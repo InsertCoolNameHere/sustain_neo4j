@@ -102,7 +102,7 @@ task sustainServer(type: CreateStartScripts) {
 }
 
 task gboost(type: CreateStartScripts) {
-    mainClassName = 'org.sustain.modeling.GBoostRegressionModel'
+    mainClassName = 'org.sustain.modeling.GBoostIncremental'
     applicationName = 'gboost'
     outputDir = new File(project.buildDir, 'tmp')
     classpath = startScripts.classpath
