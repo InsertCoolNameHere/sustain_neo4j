@@ -199,7 +199,8 @@ public class GraphEditor {
 
         //Dataset<Row> joined_data = exploded_lines.join(filtered_points, "coordinates");
 
-        Dataset<Row> joined_data = filtered_points.join(exploded_lines, exploded_lines.col("coordinates"), "leftouter");
+        Dataset<Row> joined_data = filtered_points.join(exploded_lines,
+                filtered_points.col("coordinates").equalTo(exploded_lines.col("coordinates")), "leftouter");
 
         FancyLogger.fancy_logging("JOINED DATA: ", log);
         joined_data.show(5);

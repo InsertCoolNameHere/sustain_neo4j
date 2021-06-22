@@ -65,7 +65,7 @@ public class EnsembleQueryHandler extends GrpcSparkHandler<ModelRequest, ModelRe
 
             // Initailize ReadConfig
             Map<String, String> readOverrides = new HashMap<String, String>();
-            readOverrides.put("spark.mongodb.input.collection", "demo_points_geo");
+            readOverrides.put("spark.mongodb.input.collection", "osm_points_geo");
             readOverrides.put("spark.mongodb.input.database", Constants.DB.NAME);
             readOverrides.put("spark.mongodb.input.uri", mongoUri);
 
@@ -76,7 +76,7 @@ public class EnsembleQueryHandler extends GrpcSparkHandler<ModelRequest, ModelRe
 
             // Initailize ReadConfig
             Map<String, String> readOverrides_1 = new HashMap<String, String>();
-            readOverrides_1.put("spark.mongodb.input.collection", "demo_lines_geo");
+            readOverrides_1.put("spark.mongodb.input.collection", "osm_lines_geo");
             readOverrides_1.put("spark.mongodb.input.database", Constants.DB.NAME);
             readOverrides_1.put("spark.mongodb.input.uri", mongoUri);
 
@@ -97,8 +97,8 @@ public class EnsembleQueryHandler extends GrpcSparkHandler<ModelRequest, ModelRe
             GraphEditor ge = new GraphEditor();
             ge.setWc(wc);
 
-            ge.setMongoCollection_points(point_collection);
-            ge.setMongoCollection_lines(line_collection);
+            ge.setMongoCollection_points(point_collection.limit(10));
+            ge.setMongoCollection_lines(line_collection.limit(10));
 
             /*FancyLogger.fancy_logging("POINT DATA: ", log);
             point_collection.show(5);
